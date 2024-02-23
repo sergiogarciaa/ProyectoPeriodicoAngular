@@ -12,7 +12,13 @@ export class RegistroComponent {
 
   }
 
-  signUp(email: string, password: string) {
-    this.authService.signUpWithEmailAndPassword(email, password);
+  signUp(email: string, password: string, nombre: string, apellidos: string, telefono: string) {
+    this.authService.signUpWithEmailAndPassword(email, password, nombre, apellidos, telefono)
+      .then(() => {
+        console.log("Registro exitoso");
+      })
+      .catch((error) => {
+        console.error("Error durante el registro:", error.message);
+      });
   }
 }
