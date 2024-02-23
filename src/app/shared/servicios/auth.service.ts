@@ -35,13 +35,36 @@ export class AuthService {
   }
   
 
-   logWithGoogleProvider(){
+  logWithGoogleProvider() {
     return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
-    .then(() => this.observeUserState())
-    .catch((error: Error) => {
-      alert(error.message);
-    })
-   }
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          const userData: Usuario = {
+            id: user.uid,
+            email: user.email || '', // Asegúrate de manejar los casos en los que el email sea nulo
+            nombre: user.displayName || '', // Asegúrate de manejar los casos en los que el displayName sea nulo
+            apellidos: '', // Puedes manejar los apellidos de manera diferente si no están disponibles
+            telefono: '', // Puedes manejar el teléfono de manera diferente si no está disponible
+            password: '', // No hay contraseña cuando se autentica con Google
+            rol: 'usuario',
+            fechaRegistro: new Date()
+          };
+          // Guardamos los datos del usuario en la base de datos
+          return this.firestore.collection('usuarios').doc(user.uid).set(userData);
+        } else {
+          throw new Error('Usuario no encontrado después de la autenticación con Google.');
+        }
+      })
+      .then(() => {
+        // Mira si está logueado y sino redirige a la página de inicio
+        this.observeUserState();
+      })
+      .catch((error: Error) => {
+        alert(error.message);
+      });
+  }
+  
    
     //Metodos para el registro de usuarios en la base de datos y la autenticación
     signUpWithEmailAndPassword(email: string, password: string, nombre: string, apellidos: string, telefono: string){
@@ -76,7 +99,7 @@ export class AuthService {
     }
     observeUserState(){
       return this.firebaseAuthenticationService.authState.subscribe((userState) => {
-        userState && this.ngZone.run(() => this.router.navigate(['principal/login']))
+        userState && this.ngZone.run(() => this.router.navigate(['principal/dashboard']))
       })
     }
     get isLoggedIn(): boolean{
@@ -86,7 +109,7 @@ export class AuthService {
     logOut(){
       return this.firebaseAuthenticationService.signOut().then(() => {
         localStorage.removeItem('user');
-        this.router.navigate(['login']);
+        this.router.navigate(['principal/login']);
       })
     }
     obtenerUsuarioActual(){
@@ -140,6 +163,17 @@ export class AuthService {
         }
       } catch (error) {
         console.error("Error al eliminar usuario de de Auth firebase:", error);
+      }
+    }
+
+    isAdmin(): boolean {
+      const usuario = this.obtenerUsuarioDeLocalStorage();
+      // Verifica si el usuario está autenticado y tiene el rol de administrador
+      if(usuario.rol == 'Admin'){
+        return true;
+      }
+      else{
+        return false;
       }
     }
 }

@@ -17,6 +17,9 @@ export class LoginComponent {
       password: new FormControl()
     })
   }
+  logInWithGoogle(){
+    this.authService.logWithGoogleProvider()
+  }
   onSubmit() {
     console.log("e" + this.formularioLogin.value.email)
     console.log("e" + this.formularioLogin.value.password)
@@ -29,7 +32,5 @@ export class LoginComponent {
     })
   }
   
-  logInWithGoogle(){
-    this.authService.logWithGoogleProvider()
-  }
+  
 }
