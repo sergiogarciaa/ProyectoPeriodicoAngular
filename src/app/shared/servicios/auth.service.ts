@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../interfaces/usuario';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BaseDatosService } from './base-datos.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -144,6 +145,34 @@ export class AuthService {
       localStorage.removeItem('usuarioActual');
       localStorage.clear();
     }
+
+    async borrarUsuario(usuario: Usuario) {
+      try {
+        const response = await this.login(usuario);
+        const user = response.user;
+        if (user) {
+          await deleteUser(user);
+          // Eliminar el usuario de la base de datos
+          if (usuario.id) {
+            await this.baseDatosServicio.eliminar('usuarios', usuario.id);
+            Swal.fire('Éxito', 'Usuario eliminado correctamente', 'success');
+            
+          }else {
+            console.error("El usuario no tiene un ID válido.");
+            // Manejar el caso en que el usuario no tenga un ID válido
+          }
+          
+        }
+      } catch (error) {
+        console.error("Error al eliminar usuario de de Auth firebase:", error);
+        if (error === 'auth/missing-password') {
+          Swal.fire('Error', 'No se pudo eliminar el usuario: Contraseña faltante', 'error');
+        } else {
+          Swal.fire('Error', 'No se pudo eliminar el usuario', 'error');
+        }
+      }
+    }
+    
   
     actualizarUsuario(usuario: Usuario){
       return this.baseDatosServicio.actualizar('usuarios', usuario); 
@@ -160,6 +189,7 @@ export class AuthService {
         if (user) {
           await deleteUser(user); 
           console.log("Usuario eliminado correctamente de Auth firebase.");
+          this.router.navigate(['administracion/ver-panel']);
         }
       } catch (error) {
         console.error("Error al eliminar usuario de de Auth firebase:", error);
