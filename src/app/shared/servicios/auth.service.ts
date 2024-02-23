@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Auth, GoogleAuthProvider, sendPasswordResetEmail } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, sendPasswordResetEmail, deleteUser, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Usuario } from '../interfaces/usuario';
@@ -29,16 +29,12 @@ export class AuthService {
         }
       })
    }
-   logWithEmailAndPassword(email: string, password: string){
-    return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      this.userData = userCredential.user
-      this.observeUserState()
-    })
-    .catch((error) => {
-      alert(error.message);
-    })
-   }
+
+   async login(usuario: Usuario){
+    return signInWithEmailAndPassword(this.auth, usuario.email, usuario.password!);
+  }
+  
+
    logWithGoogleProvider(){
     return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
     .then(() => this.observeUserState())
@@ -60,6 +56,7 @@ export class AuthService {
             nombre: nombre,
             apellidos: apellidos,
             telefono: telefono,
+            password: password,
             rol: 'usuario',
             fechaRegistro: new Date()
           };
@@ -79,7 +76,7 @@ export class AuthService {
     }
     observeUserState(){
       return this.firebaseAuthenticationService.authState.subscribe((userState) => {
-        userState && this.ngZone.run(() => this.router.navigate(['dashboard']))
+        userState && this.ngZone.run(() => this.router.navigate(['principal/login']))
       })
     }
     get isLoggedIn(): boolean{
@@ -131,5 +128,18 @@ export class AuthService {
   
     enviarCorreoRestablecimiento(email: string): Promise<void> {
       return sendPasswordResetEmail(this.auth, email);
+    }
+
+    async deleteUser(usuario: Usuario){
+      try {
+        const response = await this.login(usuario);
+        const user = response.user; 
+        if (user) {
+          await deleteUser(user); 
+          console.log("Usuario eliminado correctamente de Auth firebase.");
+        }
+      } catch (error) {
+        console.error("Error al eliminar usuario de de Auth firebase:", error);
+      }
     }
 }

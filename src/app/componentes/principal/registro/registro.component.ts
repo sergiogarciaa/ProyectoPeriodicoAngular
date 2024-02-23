@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/servicios/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/shared/servicios/auth.service';
 })
 export class RegistroComponent {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
@@ -16,6 +17,7 @@ export class RegistroComponent {
     this.authService.signUpWithEmailAndPassword(email, password, nombre, apellidos, telefono)
       .then(() => {
         console.log("Registro exitoso");
+        this.router.navigate(['../login']);
       })
       .catch((error) => {
         console.error("Error durante el registro:", error.message);
