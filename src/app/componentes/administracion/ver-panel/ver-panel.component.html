@@ -21,10 +21,11 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="usuarios.length > 0">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">nombre</th>
-              <th scope="col" class="px-6 py-3">apellidos</th>
-              <th scope="col" class="px-6 py-3">email</th>
-              <th scope="col" class="px-6 py-3">telefono</th>
+              <th scope="col" class="px-6 py-3">Nombre</th>
+              <th scope="col" class="px-6 py-3">Apellidos</th>
+              <th scope="col" class="px-6 py-3">Email</th>
+              <th scope="col" class="px-6 py-3">Telefono</th>
+              <th scope="col" class="px-6 py-3">Rol</th>
               <th scope="col" class="px-6 py-3">Fecha de Creacion</th>
               <th scope="col" class="px-6 py-3">Editar</th>
               <th scope="col" class="px-6 py-3">Eliminar</th>
@@ -35,9 +36,15 @@
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ usuario.nombre }}</th>
               <td class="px-6 py-4">{{ usuario.apellidos }}</td>
               <td class="px-6 py-4">{{ usuario.email }}</td>
+              <td class="px-6 py-4">{{ usuario.telefono }}</td>
               <td class="px-6 py-4">{{ usuario.rol }}</td>
               <td class="px-6 py-4">{{ usuario.fechaRegistro | date: "dd/MM/yyyy HH:mm:ss" }}</td>
             <!-- botón de ELIMINAR -->
+            <td>
+                <a class="btn buttonPrincipal" routerLink="/administracion/editar-usuario/{{ usuario.id }}">
+                    Editar
+                </a>
+            </td>
             <td>
                 <a class="btn btn-danger" *ngIf="usuario.id" (click)="eliminar(usuario.id, usuario.email)">Borrar</a>
             </td>
