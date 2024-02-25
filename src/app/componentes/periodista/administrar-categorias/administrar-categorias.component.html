@@ -32,12 +32,17 @@
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ categoria.tipo }}</th>
                 <td class="px-6 py-4">{{ categoria.descripcion }}</td>
                 <td class="px-6 py-4">
-                  <a class="btn buttonPrincipal" routerLink="/periodista/editar-categoria/{{ categoria.id }}">
+                  <a class="btn buttonPrincipal" *ngIf="usuarioActual?.rol == 'Admin'; else noEditar" routerLink="/periodista/editar-categoria/{{ categoria.id }}">
                     Editar
                   </a>
                 </td>
+                <ng-template #noEditar>
+                    <td class="px-6 py-4">
+                     X
+                    </td>
+                  </ng-template>
                 <td class="px-6 py-4">
-                  <button class="btn btn-danger" (click)="eliminarCategoria(categoria.id!)">
+                  <button class="btn btn-danger"  *ngIf="usuarioActual?.rol == 'Admin'; else noEditar" (click)="eliminarCategoria(categoria.id!)">
                     Eliminar
                   </button>
                 </td>

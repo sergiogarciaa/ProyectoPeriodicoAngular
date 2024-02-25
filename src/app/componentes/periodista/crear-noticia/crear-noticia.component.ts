@@ -68,11 +68,13 @@ export class CrearNoticiaComponent {
     if (this.formularioNoticia.valid) {
       // Asignar id Aleatorio
       const idNoticia = uuidv4();
+      const idusu = this.idUsuario;
       const nuevaNoticia: Noticias = {
         id: idNoticia,
         titulo: this.formularioNoticia.value.titulo,
         cuerpo: this.formularioNoticia.value.cuerpo,
         autor: this.formularioNoticia.value.autor,
+        idAutor: idusu,
         categoria: this.formularioNoticia.value.categoria,
     };
 

@@ -6,5 +6,6 @@ export interface Noticias {
     cuerpo: string;
     comentarios?: Comentario[]; // Noticia puede tener comentarios opcionales
     autor: string;
+    idAutor?: string;
     categoria: string;
 }

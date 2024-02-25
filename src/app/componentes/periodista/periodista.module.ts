@@ -8,6 +8,7 @@ import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.compo
 import { AdministrarCategoriasComponent } from './administrar-categorias/administrar-categorias.component';
 import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
 import { AdministrarNoticiasComponent } from './administrar-noticias/administrar-noticias.component';
+import { EditarNoticiaComponent } from './editar-noticia/editar-noticia.component';
 
 
 
@@ -18,7 +19,8 @@ import { AdministrarNoticiasComponent } from './administrar-noticias/administrar
     CrearCategoriaComponent,
     AdministrarCategoriasComponent,
     EditarCategoriaComponent,
-    AdministrarNoticiasComponent
+    AdministrarNoticiasComponent,
+    EditarNoticiaComponent
   ],
   imports: [
     CommonModule,

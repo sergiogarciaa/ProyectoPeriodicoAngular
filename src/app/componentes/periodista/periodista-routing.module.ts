@@ -7,6 +7,7 @@ import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.compo
 import { AdministrarCategoriasComponent } from './administrar-categorias/administrar-categorias.component';
 import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
 import { AdministrarNoticiasComponent } from './administrar-noticias/administrar-noticias.component';
+import { EditarNoticiaComponent } from './editar-noticia/editar-noticia.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'crear-noticia/:id', component: CrearNoticiaComponent, canActivate: [periodistaGuard] },
       { path: 'administrar-categorias', component: AdministrarCategoriasComponent, canActivate: [periodistaGuard] },
       { path: 'administrar-noticias', component: AdministrarNoticiasComponent, canActivate: [periodistaGuard] },
+      { path: 'editar-noticia/:id', component: EditarNoticiaComponent, canActivate: [periodistaGuard] },
       { path: 'editar-categoria/:id', component: EditarCategoriaComponent, canActivate: [periodistaGuard] },
       { path: 'crear-categoria', component: CrearCategoriaComponent, canActivate: [periodistaGuard] },
     ],

@@ -1,0 +1,57 @@
+<main class="bg-gray-50 dark:bg-gray-900 h-screen text-white">
+    <header class="blog-header py-3 px-3">
+      <div class="flex justify-between items-center">
+        <div class="pt-1"></div>
+        <div class="text-center">
+          <a class="blog-header-logo text-dark underline">Editar Noticia</a>
+        </div>
+        <div class="flex justify-end items-center">
+          <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/periodista/administrar-noticias">Volver</a>
+          <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" (click)="logOut()">Salir</button>
+        </div>
+      </div>
+    </header>
+    <hr>
+    <form class="custom-form" [formGroup]="formularioEditarNoticia" (ngSubmit)="editarNoticia()" style="padding-top: 5%;">
+      <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <div class="space-y-4 md:space-y-6">
+              <div>
+                <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
+                <input type="text" name="titulo" id="titulo" formControlName="titulo"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Título" required>
+              </div>
+              <div>
+                <label for="cuerpo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cuerpo</label>
+                <textarea name="cuerpo" id="cuerpo" formControlName="cuerpo"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  rows="5" placeholder="Cuerpo" required></textarea>
+              </div>
+              <div>
+                <label for="autor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Autor</label>
+                <input type="text" name="autor" id="autor" formControlName="autor"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Autor" required readonly>
+              </div>
+              <div>
+                <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+                <select name="categoria" id="categoria" formControlName="categoria"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required>
+                  <option value="">Seleccionar categoría</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.tipo">{{ categoria.tipo }}</option>
+                </select>
+              </div>
+              <button type="submit"
+                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-primary-800">
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+  
