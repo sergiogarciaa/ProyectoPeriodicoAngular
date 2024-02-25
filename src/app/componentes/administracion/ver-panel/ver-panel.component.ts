@@ -60,6 +60,7 @@ export class VerPanelComponent {
     )!;
 
     if(usuarioAeliminar.rol === 'Admin'){
+      Swal.fire('¡No  se puede!', 'No se puede eliminar a un administrador', 'info' )
       return;
     }
 
@@ -68,9 +69,13 @@ export class VerPanelComponent {
           .then(() => {
             console.log(`${'usuario'} eliminado`);
             this.auth.borrarUsuario(usuarioAeliminar);
+            Swal.fire('Borrar usuario completado!', 'Se ha eliminado al usuario', 'success' )
           })
           .catch((error) => {
             console.log(error);
           });
+  }
+  logOut(){
+    this.auth.logout();
   }
 }

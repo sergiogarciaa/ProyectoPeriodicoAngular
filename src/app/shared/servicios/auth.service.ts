@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class AuthService {
 
-  constructor(private auth: Auth, private baseDatosServicio: BaseDatosService) { }
+  constructor(private auth: Auth, private baseDatosServicio: BaseDatosService, private router: Router) { }
 
   registrar(usuario: Usuario){
     return createUserWithEmailAndPassword(this.auth, usuario.email, usuario.password!);
@@ -24,6 +24,8 @@ export class AuthService {
 
   logout(){
     localStorage.clear();
+    this.router.navigate(['/principal/login'])
+    Swal.fire('¡Se ha cerrado su sesión!', '', 'success' )
     return signOut(this.auth);
   }
 

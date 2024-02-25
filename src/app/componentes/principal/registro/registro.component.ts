@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/interfaces/usuario';
 import { AuthService } from 'src/app/shared/servicios/auth.service';
 import { BaseDatosService } from 'src/app/shared/servicios/base-datos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -30,6 +31,7 @@ export class RegistroComponent {
       this.insertarUserEnFirebase();
     })
       .catch((error) => {
+        Swal.fire('Registro fallido!','Se ha producido un error al crear el usuario', 'success')
         console.error("Error durante el registro:", error.message);
       });
   }
@@ -46,9 +48,11 @@ export class RegistroComponent {
       .insertar('usuarios', usuario)
       .then(() => {
         this.router.navigate(['/principal/login']);
+        Swal.fire('Registro exitoso!', 'Se ha creado al usuario', 'success' )
       })
       .catch((error: any) => {
         console.log(error);
+        Swal.fire('Registro fallido!', 'Se ha producido un error al introducir el usuario en la base de datos', 'error' )
       });
   }
 }

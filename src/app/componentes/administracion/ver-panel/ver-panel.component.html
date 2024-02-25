@@ -1,3 +1,17 @@
+<main class="bg-gray-50 dark:bg-gray-900 h-screen text-white">
+<header class="blog-header py-3 px-3">
+    <div class="flex justify-between items-center">
+      <div class="pt-1"></div>
+      <div class="text-center">
+        <a class="blog-header-logo text-dark underline">Panel Administrativo</a>
+      </div>
+      <div class="flex justify-end items-center">
+        <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/principal/dashboard">Volver</a>
+        <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" (click)="logOut()">Salir</button>
+      </div>
+    </div>
+  </header>
+  <hr>
   <div class="container py-4 mt-5" style="display: flex; justify-content: center;">
     <div class="card bg-transparent">
       <div class="card-header">
@@ -33,3 +47,4 @@
       </div>
     </div>
   </div>
+  </main>

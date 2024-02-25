@@ -30,4 +30,7 @@ export class DashboardComponent {
         });
     }
   }
+  logOut(){
+    this.authService.logout();
+  }
 }

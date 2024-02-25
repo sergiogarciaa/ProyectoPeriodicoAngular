@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/servicios/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +25,10 @@ export class LoginComponent {
     this.authService.login(this.formularioLogin.value)
     .then(() => {
       this.router.navigate(['/principal/dashboard']);
+      Swal.fire('Login correcto!','Bienvenido a La Revista', 'success')
     })
     .catch(() => {
-      alert("No se ha encontrado la cuenta o la contraseña es incorrecta")
+      Swal.fire('Login fallido!','No se ha encontrado la cuenta o la contraseña es incorrecta', 'error')
     })
   }
   
