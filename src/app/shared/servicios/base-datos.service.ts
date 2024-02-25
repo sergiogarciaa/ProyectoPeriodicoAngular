@@ -65,4 +65,8 @@ export class BaseDatosService {
     return updateDoc(elementDocRef, documento);
   }
 
+  insertar(coleccion: string, element: any) {
+    const colecctionRef = collection(this.fbs, coleccion);
+    return addDoc(colecctionRef, element);
+  }
 }

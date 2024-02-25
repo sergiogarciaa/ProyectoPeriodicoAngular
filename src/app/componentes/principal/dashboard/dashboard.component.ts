@@ -14,22 +14,20 @@ export class DashboardComponent {
   
   constructor(private authService: AuthService, private baseDatosServicio: BaseDatosService) {
     localStorage.clear();
-    this.authService.guardarUsuarioEnLocalStorage();
   }
   
   ngOnInit(): void {
 
     this.emailUsuarioActual = this.authService.obtenerUsuarioActual()?.email;
-    
-    this.baseDatosServicio
-      .obtenerPorFiltro('usuarios', 'email', this.emailUsuarioActual)
-      .subscribe((data) => {
-        this.usuarioActual = data[0];
-      });
-  }
-
-
-  logOut() {
-    this.authService.logOut();
+  
+    if (!this.usuarioActual) {
+      console.log("Desde la bd")
+      // Si el usuario no se ha obtenido desde el Local Storage, intenta obtenerlo de la base de datos.
+      this.baseDatosServicio
+        .obtenerPorFiltro('usuarios', 'email', this.emailUsuarioActual)
+        .subscribe((data) => {
+          this.usuarioActual = data[0];
+        });
+    }
   }
 }

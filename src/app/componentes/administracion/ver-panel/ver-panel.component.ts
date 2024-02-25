@@ -24,6 +24,7 @@ export class VerPanelComponent {
   ngOnInit(): void {
     this.obtenerUsuarios();
   }
+  
   obtenerUsuarios() {
     this.baseDatos
       .obtenerTodos('usuarios')
@@ -54,7 +55,6 @@ export class VerPanelComponent {
   }
 
   eliminar(id: string, email: string) {
-
     const usuarioAeliminar: Usuario = this.usuarios.find(
       (user) => user.id === id
     )!;
@@ -68,14 +68,9 @@ export class VerPanelComponent {
           .then(() => {
             console.log(`${'usuario'} eliminado`);
             this.auth.borrarUsuario(usuarioAeliminar);
-            
           })
           .catch((error) => {
             console.log(error);
           });
-  }
-
-  logOut() {
-    this.auth.logOut();
   }
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
     { 
       path: 'principal/dashboard', 
       component: DashboardComponent, 
-      ...canActivate(()=> redirectUnauthorizedTo(['/login/registrar']))
+      ...canActivate(()=> redirectUnauthorizedTo(['/principal/login']))
     },
     { path: 'principal/registro', component: RegistroComponent },
     { path: 'principal/login', component: LoginComponent},

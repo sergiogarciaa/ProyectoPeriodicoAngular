@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BaseDatosService } from '../shared/servicios/base-datos.service';
+import { AuthService } from '../shared/servicios/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

@@ -17,12 +17,10 @@ export class LoginComponent {
       password: new FormControl()
     })
   }
-  logInWithGoogle(){
-    this.authService.logWithGoogleProvider()
-  }
+  
   onSubmit() {
-    console.log("e" + this.formularioLogin.value.email)
-    console.log("e" + this.formularioLogin.value.password)
+    console.log(this.formularioLogin.value.email)
+    console.log(this.formularioLogin.value.password)
     this.authService.login(this.formularioLogin.value)
     .then(() => {
       this.router.navigate(['/principal/dashboard']);
