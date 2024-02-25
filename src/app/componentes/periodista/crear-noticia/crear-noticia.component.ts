@@ -9,6 +9,7 @@ import { BaseDatosService } from 'src/app/shared/servicios/base-datos.service';
 import { CategoriasService } from 'src/app/shared/servicios/categorias.service';
 import { NoticiasService } from 'src/app/shared/servicios/noticias.service';
 import Swal from 'sweetalert2';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-crear-noticia',
@@ -64,11 +65,15 @@ export class CrearNoticiaComponent {
   }
 
   crearNoticia() {
-    const nuevaNoticia: Noticias = {
-      titulo: this.formularioNoticia.value.titulo,
-      cuerpo: this.formularioNoticia.value.cuerpo,
-      autor: this.formularioNoticia.value.autor,
-      categoria: this.formularioNoticia.value.categoria,
+    if (this.formularioNoticia.valid) {
+      // Asignar id Aleatorio
+      const idNoticia = uuidv4();
+      const nuevaNoticia: Noticias = {
+        id: idNoticia,
+        titulo: this.formularioNoticia.value.titulo,
+        cuerpo: this.formularioNoticia.value.cuerpo,
+        autor: this.formularioNoticia.value.autor,
+        categoria: this.formularioNoticia.value.categoria,
     };
 
     this.noticiasService.crearNoticia(nuevaNoticia)
@@ -81,6 +86,10 @@ export class CrearNoticiaComponent {
         Swal.fire('Error', 'Ocurrió un error al crear la noticia', 'error');
       });
   }
+  else {
+    Swal.fire('Error', 'Por favor completa todos los campos', 'error');
+  }
+}
 
   logOut(){
     this.auth.logout();

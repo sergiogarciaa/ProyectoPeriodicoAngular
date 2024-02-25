@@ -5,6 +5,8 @@ import { Categoria } from 'src/app/shared/interfaces/categoria';
 import { AuthService } from 'src/app/shared/servicios/auth.service';
 import { BaseDatosService } from 'src/app/shared/servicios/base-datos.service';
 import Swal from 'sweetalert2';
+// Genera un ID aleatorio para asignar
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-crear-categoria',
@@ -26,14 +28,17 @@ export class CrearCategoriaComponent {
 
   crearCategoria() {
     if (this.formularioCategoria.valid) {
+      // Asignar id Aleatorio
+      const idCategoria = uuidv4();
       const nuevaCategoria: Categoria = {
+        id: idCategoria,
         descripcion: this.formularioCategoria.value.descripcion,
         tipo: this.formularioCategoria.value.tipo
       };
 
       this.baseDatos.insertar('categorias', nuevaCategoria)
         .then(() => {
-          this.router.navigate(['/periodista/crear-noticia']);
+          this.router.navigate(['/periodista/administrar-categorias']);
           Swal.fire('Categoría creada', '', 'success');
         })
         .catch((error: any) => {

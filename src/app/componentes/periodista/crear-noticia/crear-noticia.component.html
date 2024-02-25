@@ -1,11 +1,12 @@
 <main class="bg-gray-50 dark:bg-gray-900 h-screen text-white">
     <header class="blog-header py-3 px-3">
         <div class="flex justify-between items-center">
-          <div class="pt-1"></div>
           <div class="text-center">
             <a class="blog-header-logo text-dark underline">Sector Periodista</a>
           </div>
           <div class="flex justify-end items-center">
+            <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/periodista/administrar-categorias">Administrar Categorías</a>
+            <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/periodista/administrar-noticias">Administrar Noticias</a>
             <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/principal/dashboard">Volver</a>
             <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" (click)="logOut()">Salir</button>
           </div>
@@ -41,7 +42,7 @@
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required>
                   <option value="">Seleccionar categoría</option>
-                  <option *ngFor="let categoria of categorias" [value]="categoria.descripcion">{{ categoria.descripcion }}</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.tipo">{{ categoria.tipo }}</option>
                 </select>
               </div>
               <div>

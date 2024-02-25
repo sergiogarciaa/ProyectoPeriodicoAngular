@@ -1,0 +1,51 @@
+<main class="bg-gray-50 dark:bg-gray-900 h-screen text-white">
+    <header class="blog-header py-3 px-3">
+      <div class="flex justify-between items-center">
+        <div class="text-center">
+          <a class="blog-header-logo text-dark underline">Panel Periodista Categorias</a>
+        </div>
+        <div class="flex justify-end items-center">
+            <a class="btn btn-sm btn-outline-secondary mr-5" routerLink="/periodista/crear-noticia/{{ usuarioActual?.id }}">Volver</a>
+          <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" (click)="logOut()">Salir</button>
+        </div>
+      </div>
+    </header>
+    <hr>
+    <div class="py-4 mt-5 flex justify-center">
+      <div class="card bg-transparent">
+        <div class="card-header mb-5 flex justify-between">
+          <h3>Listado de categorías</h3>
+          <a class="btn btn-sm btn-outline-secondary" routerLink="/periodista/crear-categoria">Crear Categoria</a>
+        </div>
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="categorias.length > 0">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">Descripción</th>
+                <th scope="col" class="px-6 py-3">Editar</th>
+                <th scope="col" class="px-6 py-3">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let categoria of categorias">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ categoria.tipo }}</th>
+                <td class="px-6 py-4">{{ categoria.descripcion }}</td>
+                <td class="px-6 py-4">
+                  <a class="btn buttonPrincipal" routerLink="/periodista/editar-categoria/{{ categoria.id }}">
+                    Editar
+                  </a>
+                </td>
+                <td class="px-6 py-4">
+                  <button class="btn btn-danger" (click)="eliminarCategoria(categoria.id!)">
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  

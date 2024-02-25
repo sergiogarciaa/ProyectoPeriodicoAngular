@@ -5,6 +5,9 @@ import { CrearNoticiaComponent } from './crear-noticia/crear-noticia.component';
 import { PeriodistaRoutingModule } from './periodista-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
+import { AdministrarCategoriasComponent } from './administrar-categorias/administrar-categorias.component';
+import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
+import { AdministrarNoticiasComponent } from './administrar-noticias/administrar-noticias.component';
 
 
 
@@ -12,7 +15,10 @@ import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.compo
   declarations: [
     PeriodistaComponent,
     CrearNoticiaComponent,
-    CrearCategoriaComponent
+    CrearCategoriaComponent,
+    AdministrarCategoriasComponent,
+    EditarCategoriaComponent,
+    AdministrarNoticiasComponent
   ],
   imports: [
     CommonModule,
