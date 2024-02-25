@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Noticias } from '../interfaces/noticias';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +69,8 @@ export class BaseDatosService {
   insertar(coleccion: string, element: any) {
     const colecctionRef = collection(this.fbs, coleccion);
     return addDoc(colecctionRef, element);
+  }
+  obtenerNoticiasPorCategoria(categoria: string): Observable<Noticias[]> {
+    return this.obtenerPorFiltro('noticias', 'categorias', categoria);
   }
 }

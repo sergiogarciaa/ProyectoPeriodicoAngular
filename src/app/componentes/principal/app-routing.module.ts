@@ -12,12 +12,12 @@ import { PrincipalComponent } from './principal.component';
 const routes: Routes = [
   { path: '', component: PrincipalComponent, children:[
     { 
-      path: 'principal/dashboard', 
+      path: 'dashboard', 
       component: DashboardComponent, 
       ...canActivate(()=> redirectUnauthorizedTo(['/principal/login']))
     },
-    { path: 'principal/registro', component: RegistroComponent },
-    { path: 'principal/login', component: LoginComponent},
+    { path: 'registro', component: RegistroComponent },
+    { path: 'login', component: LoginComponent},
   ]}
 ];
 
