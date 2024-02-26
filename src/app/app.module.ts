@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { principalModule } from './componentes/principal/principal.module';
 import { FormsModule } from '@angular/forms';
+import { NoticiasComponent } from './componentes/noticias/noticias.component';
 
 @NgModule({
   declarations: [

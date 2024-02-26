@@ -3,6 +3,8 @@ import { Usuario } from "./usuario";
 export interface Comentario {
     id?: string;
     contenido: string;
-    autor: Usuario;
+    autor: string;
     fechaPublicacion: Date;
+    idUsuario?: string;
+    idNoticia?: string;
 }

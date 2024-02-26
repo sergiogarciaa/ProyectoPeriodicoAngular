@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseDatosService } from './base-datos.service';
 import { Noticias } from '../interfaces/noticias';
 import { Observable } from 'rxjs';
-import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, query, where } from '@angular/fire/firestore';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 @Injectable({
@@ -31,5 +31,10 @@ export class NoticiasService {
 
     obtenerNoticias(): Observable<Noticias[]> {
       return this.noticiasCollection.valueChanges({ idField: 'id' });
+    }
+    
+    obtenerNoticiaPorId(id: string): Observable<Noticias | undefined> {
+      const docRef = doc(this.fbs, 'noticias', id);
+      return docData(docRef, { idField: 'id' }) as Observable<Noticias | undefined>;
     }
 }

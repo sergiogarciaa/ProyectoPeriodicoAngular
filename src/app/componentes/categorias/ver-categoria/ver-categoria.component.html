@@ -1,16 +1,18 @@
-<header class="blog-header py-3 px-3 bg-gray-50 dark:bg-gray-900 text-white">
-    <div class="flex justify-between items-center">
-      <div class="text-center">
-        <a class="blog-header-logo text-dark underline">Sector Periodista</a>
-      </div>
-      <div class="flex justify-end items-center">
-        <a class="w-32 text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" routerLink="/principal/dashboard">Volver</a>
-        <button type="button" class="w-32 text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-        dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" style="margin-left:10%;" (click)="logOut()">Salir</button>
-      </div>
-    </div>
-  </header>
+<div class="flex justify-between pt-4 pl-10 bg-gray-50 dark:bg-gray-900">
+  <div class="justify-center flex">
+  <h2 class="h-auto text-3xl text-gray-900 dark:text-gray-50">Ver Categoría</h2>
+  </div>
+  
+  <div class="flex justify-end py-2 pr-5 gap-5">
+  <a routerLink="/principal/dashboard"
+      class="w-32 text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+      dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Volver</a>
+
+  <button (click)="logOut()"
+      class="w-28 text-white bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 
+      text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Salir</button>
+  </div>
+</div>
 
 <div class="items-center w-full flex bg-gray-50 dark:bg-gray-900 text-white" style="justify-content: space-evenly;" id="navbar-sticky">
     <ul *ngFor="let categoria of categorias" class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">

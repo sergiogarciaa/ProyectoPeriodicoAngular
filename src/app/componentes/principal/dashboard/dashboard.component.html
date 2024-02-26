@@ -45,7 +45,7 @@
                   <img src="assets/images/output_44.png" alt="Avatar" class="w-8 h-8 rounded-full mr-2 object-cover">
                   <span class="text-gray-800 font-semibold">{{noticia.autor}}</span>
                 </div>
-                <span class="text-red-600"><a routerLink="/noticia/ver-noticia/{{ noticia.id }}">Leer Más</a></span>
+                <span class="text-red-600"><a [routerLink]="['/noticia/ver-noticia', noticia.id, { usuarioNombre: usuarioActual?.nombre, usuarioId: usuarioActual?.id , usuarioRol: usuarioActual?.rol} ]">Leer Más</a></span>
               </div>
             </div>
           </div>

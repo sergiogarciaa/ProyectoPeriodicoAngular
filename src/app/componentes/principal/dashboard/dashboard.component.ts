@@ -7,11 +7,13 @@ import { BaseDatosService } from 'src/app/shared/servicios/base-datos.service';
 import { CategoriasService } from 'src/app/shared/servicios/categorias.service';
 import { NoticiasService } from 'src/app/shared/servicios/noticias.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent {
   // Obtener usuario actual
   emailUsuarioActual: string | undefined | null;
