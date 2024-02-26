@@ -21,7 +21,7 @@
       <div class="card bg-transparent">
         <div class="card-header mb-5 flex justify-between">
           <h3>Listado de noticias</h3>
-          <a class="btn btn-sm btn-outline-secondary" routerLink="/periodista/crear-noticia/{{ usuarioActual?.id }}">Crear Noticia</a>
+          <a class="bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" routerLink="/periodista/crear-noticia/{{ usuarioActual?.id }}">Crear Noticia</a>
         </div>
         <div class="relative overflow-x-auto">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="noticias.length > 0">
